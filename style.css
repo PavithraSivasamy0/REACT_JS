@@ -19,10 +19,9 @@
   padding: 16px;
 }
 
-/* .restroContainer {
-  padding: 12px;
-  margin-left: -12px;
-} */
+.restroContainer {
+  padding-top: 12px;
+}
 
 .restroCard {
   width: 200px;
@@ -46,4 +45,9 @@
   grid-template-columns: repeat(6, 5fr); */
   display: flex;
   flex-wrap: wrap;
+}
+
+.filter-btn {
+  cursor: pointer;
+  padding: 12px;
 }

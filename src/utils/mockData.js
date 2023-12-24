@@ -1,7 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const resList = [
+export const RES_LIST = [
   {
     type: "restaurant",
     data: {
@@ -1885,80 +1882,3 @@ const resList = [
     subtype: "basic",
   },
 ];
-
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMQSdoe7l3Vd35VMo7uN56bFkJ8-mONzDFtg&usqp=CAU"
-          alt="food logo"
-        />
-      </div>
-      <nav className="nav-items">
-        <ul className="list-container">
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </nav>
-    </div>
-  );
-};
-
-const RestroCard = ({ resData }) => {
-  const {
-    name,
-    cuisines,
-    costForTwo,
-    cloudinaryImageId,
-    avgRating,
-    maxDeliveryTime,
-  } = resData?.data;
-  return (
-    <div className="restroCard">
-      <img
-        className="restro-img"
-        src={
-          "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +
-          cloudinaryImageId
-        }
-        alt="hotel-img"
-      ></img>
-      <h3 className="restaruntName">{name}</h3>
-      <h4 style={{ width: "200px", wordWrap: "break-word" }}>
-        {cuisines.join(",")}
-      </h4>
-      <h4>₹{costForTwo / 100} for two</h4>
-      <h4>₹{avgRating}</h4>
-      <h4>{maxDeliveryTime} mins</h4>
-    </div>
-  );
-};
-const RestroContainer = () => {
-  return (
-    <div className="restroContainer">
-      <div className="search">
-        <input type="text" placeholder="search"></input>
-      </div>
-      <div className="restroCard-container">
-        {resList.map((restaurant) => (
-          <RestroCard key={restaurant.data.id} resData={restaurant} />
-        ))}
-      </div>
-    </div>
-  );
-};
-const AppLayout = () => {
-  return (
-    <div className="appLayout">
-      <Header />
-      <RestroContainer />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
