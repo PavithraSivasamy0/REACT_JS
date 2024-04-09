@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/constant";
 import { useState } from "react";
 const Header = () => {
-  const [toggleLoginName, setToggleLoginName] = useState("Login");
+  const [toggleLogIn, setToggleLogIn] = useState("Login");
   return (
     <div className="header">
       <div className="logo-container">
@@ -9,19 +10,25 @@ const Header = () => {
       </div>
       <nav className="nav-items">
         <ul className="list-container">
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About Us</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
           <li>Cart</li>
           <button
             className="log-btn"
             onClick={() => {
-              toggleLoginName === "Login"
-                ? setToggleLoginName("Logout")
-                : setToggleLoginName("Login");
+              toggleLogIn === "Login"
+                ? setToggleLogIn("Logout")
+                : setToggleLogIn("Login");
             }}
           >
-            {toggleLoginName}
+            {toggleLogIn}
           </button>
         </ul>
       </nav>

@@ -3,6 +3,7 @@ import { CDN_URL } from "../utils/constant";
 const RestroCard = ({ resData }) => {
   const { name, cuisines, costForTwo, cloudinaryImageId, avgRating, sla } =
     resData?.info;
+
   return (
     <div className="restroCard">
       <img

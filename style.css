@@ -69,3 +69,8 @@
   height: 400px;
   background-color: #0f0f041a;
 }
+
+.user-card {
+  padding: 1opx;
+  border: 1px solid black;
+}
