@@ -1,28 +1,23 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { MENULIST_API } from "../utils/constant";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const RestaurantMenu = () => {
-  const [restaurantData, setRestaurantData] = useState(null);
   const { resId } = useParams();
-  console.log(resId);
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-  const fetchMenu = async () => {
-    const data = await fetch(MENULIST_API + resId);
-    const json = await data.json();
-    setRestaurantData(json.data);
-  };
+  const resInfo = useRestaurantMenu(resId);
+  const status = useOnlineStatus();
 
-  if (restaurantData === null) return <Shimmer />;
+  if (status === false)
+    return <h1>It seems you're offline, please check on connection!</h1>;
+
+  if (resInfo === null) return <Shimmer />;
+
   const { name, cuisines, costForTwoMessage } =
-    restaurantData?.cards[2]?.card?.card?.info;
+    resInfo?.cards[2]?.card?.card?.info;
 
   const { itemCards } =
-    restaurantData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card;
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
   return (
     <div className="restaurant-menu-container">
