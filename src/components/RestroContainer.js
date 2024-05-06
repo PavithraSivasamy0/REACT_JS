@@ -29,17 +29,17 @@ const RestroContainer = () => {
     <Shimmer />
   ) : (
     <div className="restroContainer">
-      <div className="filter">
+      <div className="flex mb-2">
         <input
           name="search"
-          className="filter-restro"
+          className="border border-solid border-black m-2"
           value={searchedRestaurant}
           onChange={(e) => {
             setSearchedRestaurant(e.target.value);
           }}
         />
         <button
-          className="filter-btn"
+          className="bg-green-200 px-4 py-1 mr-2 rounded-lg"
           onClick={() => {
             const filteredRestro = listOfRestaurants.filter((res) =>
               res?.info?.name
@@ -53,7 +53,7 @@ const RestroContainer = () => {
           Search
         </button>
         <button
-          className="filter-btn"
+          className="bg-green-300 px-4 py-1 mr-2 rounded-lg"
           onClick={() => {
             const filtered = listOfRestaurants.filter(
               (restaurant) => restaurant.info.avgRating >= 4
@@ -64,7 +64,7 @@ const RestroContainer = () => {
           Top Rated Restaurant
         </button>
       </div>
-      <div className="restroCard-container">
+      <div className="flex flex-wrap justify-center">
         {filtereRestaurants.map((restaurant) => (
           <Link
             key={restaurant?.info.id}
