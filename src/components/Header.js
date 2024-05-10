@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/constant";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
+
 const Header = () => {
   const [toggleLogIn, setToggleLogIn] = useState("Login");
   const status = useOnlineStatus();
+  const data = useContext(userContext);
   return (
     <div className="flex p-4 mb-2 justify-between bg-red-500">
       <div className="logo-container">
@@ -12,17 +15,17 @@ const Header = () => {
       </div>
       <nav className="flex items-center">
         <ul className="flex p-4 m-4">
-          <li className="px-4">online {status ? "✔" : "❌"}</li>
-          <li className="px-4">
+          <li className="px-2">online {status ? "✔" : "❌"}</li>
+          <li className="px-2">
             <Link to="/">Home</Link>
           </li>
-          <li className="px-4">
+          <li className="px-2">
             <Link to="/about">About Us</Link>
           </li>
-          <li className="px-4">
+          <li className="px-2">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li className="px-4">Cart</li>
+          <li className="px-2">Cart</li>
           <button
             className="log-btn"
             onClick={() => {
@@ -33,6 +36,7 @@ const Header = () => {
           >
             {toggleLogIn}
           </button>
+          <li className="px-2">{data.loggedUser}</li>
         </ul>
       </nav>
     </div>

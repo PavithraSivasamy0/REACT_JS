@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+//import userContext from "../utils/userContext";
 import Shimmer from "./Shimmer";
 import RestroCard, { withPromotedLabel } from "./RestroCard";
 import { Link } from "react-router-dom";
+
 const RestroContainer = () => {
   // contains list of restro
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -9,9 +11,13 @@ const RestroContainer = () => {
   const [filtereRestaurants, setFilteredRestaurants] = useState([]);
   const [searchedRestaurant, setSearchedRestaurant] = useState("");
   const PromotedRestro = withPromotedLabel(RestroCard);
+
+  //const { loggedUser, setUserName } = useContext(userContext);
+
   useEffect(() => {
     fetchData();
   }, []);
+
   const fetchData = async () => {
     const response = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -20,7 +26,6 @@ const RestroContainer = () => {
     const restroCards =
       data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
-
     setListOfRestaurants(restroCards);
     setFilteredRestaurants(restroCards);
   };
@@ -64,6 +69,16 @@ const RestroContainer = () => {
           Top Rated Restaurant
         </button>
       </div>
+
+      {/* <input
+        name="search"
+        className="border border-solid border-black m-2"
+        value={loggedUser}
+        onChange={(e) => {
+          setUserName(e.target.value);
+        }}
+      /> */}
+
       <div className="flex flex-wrap justify-center">
         {filtereRestaurants.map((restaurant) => (
           <Link

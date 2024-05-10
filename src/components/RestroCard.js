@@ -25,7 +25,7 @@ const RestroCard = ({ resData }) => {
 export const withPromotedLabel = (RestroCard) => {
   return (props) => {
     return (
-      <div className="relative">
+      <div>
         <label className="absolute bg-purple-600 px-2 text-white rounded-lg">
           PROMOTED
         </label>
