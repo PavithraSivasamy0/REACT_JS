@@ -5,9 +5,9 @@ const RestroCard = ({ resData }) => {
     resData?.info;
 
   return (
-    <div className=" w-[250px] h-[480px] bg-red-50 m-2 shadow-2xl rounded-xl transform transition-transform hover:scale-105 hover:bg-slate-300">
+    <div className=" w-[250px] h-[480px] bg-red-50 m-2">
       <img
-        className="rounded-lg w-full h-48"
+        className="w-full h-48 shadow-2xl rounded-xl"
         src={CDN_URL + cloudinaryImageId}
         alt="hotel-img"
       ></img>
@@ -22,4 +22,16 @@ const RestroCard = ({ resData }) => {
   );
 };
 
+export const withPromotedLabel = (RestroCard) => {
+  return (props) => {
+    return (
+      <div className="relative">
+        <label className="absolute bg-purple-600 px-2 text-white rounded-lg">
+          PROMOTED
+        </label>
+        <RestroCard {...props} />
+      </div>
+    );
+  };
+};
 export default RestroCard;

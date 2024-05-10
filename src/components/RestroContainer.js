@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import RestroCard from "./RestroCard";
+import RestroCard, { withPromotedLabel } from "./RestroCard";
 import { Link } from "react-router-dom";
 const RestroContainer = () => {
   // contains list of restro
@@ -8,7 +8,7 @@ const RestroContainer = () => {
   //for searching and filtering
   const [filtereRestaurants, setFilteredRestaurants] = useState([]);
   const [searchedRestaurant, setSearchedRestaurant] = useState("");
-
+  const PromotedRestro = withPromotedLabel(RestroCard);
   useEffect(() => {
     fetchData();
   }, []);
@@ -70,7 +70,11 @@ const RestroContainer = () => {
             key={restaurant?.info.id}
             to={"/restaurant/" + restaurant?.info.id}
           >
-            <RestroCard resData={restaurant} />
+            {restaurant.info.avgRating >= 4.4 ? (
+              <PromotedRestro resData={restaurant} />
+            ) : (
+              <RestroCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
