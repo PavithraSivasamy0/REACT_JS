@@ -3,9 +3,13 @@ import { CDN_URL } from "../utils/constant";
 const RestroCard = ({ resData }) => {
   const { name, cuisines, costForTwo, cloudinaryImageId, avgRating, sla } =
     resData?.info;
+  resData;
 
   return (
-    <div className=" w-[250px] h-[480px] bg-red-50 m-2">
+    <div
+      className=" w-[250px] h-[480px] bg-red-50 m-2"
+      data-testid="restroCard"
+    >
       <img
         className="w-full h-48 shadow-2xl rounded-xl"
         src={CDN_URL + cloudinaryImageId}

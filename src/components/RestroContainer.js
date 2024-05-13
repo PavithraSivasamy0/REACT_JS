@@ -37,6 +37,7 @@ const RestroContainer = () => {
       <div className="flex mb-2">
         <input
           name="search"
+          data-testid="searchInput"
           className="border border-solid border-black m-2"
           value={searchedRestaurant}
           onChange={(e) => {

@@ -9,6 +9,7 @@ const MenuCategory = ({ data, showItem, setShowIndex }) => {
           {data.title} ({data.itemCards.length})
         </span>
         <button
+          data-testid="collapse-btn"
           onClick={() => {
             setShowIndex();
           }}
